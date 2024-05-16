@@ -1,0 +1,43 @@
+﻿<Window x:Class="musicSchoolWPFMVVM.CreateEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:musicSchoolWPFMVVM"
+        mc:Ignorable="d"
+        Title="CreateEmployee" Height="450" Width="800"
+        Name="CreateNewEmployeewnd">
+    <Grid>
+        <StackPanel>
+            <Grid Height="280">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Position</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Fio</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">Telephone</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">Gender</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Experience</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Email</TextBlock>
+                <ComboBox x:Name="ComboBoxEmployeeGroupMusic"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"  Width="154" Grid.Column="1" ItemsSource="{Binding AllPosition}" SelectedItem="{Binding SelectedPosition}"/>
+                <TextBox x:Name="TextBoxEmployeeFio" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"  Width="154" Grid.Column="1" Text="{Binding fio}"/>
+                <TextBox x:Name="TextBoxEmployeeTelephone" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"  Width="154" Grid.Column="1" Text="{Binding telephone}"/>
+                <TextBox x:Name="TextBoxEmployeeGender" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"  Width="154" Grid.Column="1" Text="{Binding gender}"/>
+                <TextBox x:Name="TextBoxEmployeeExperience" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4"  Width="154" Grid.Column="1" Text="{Binding experience}"/>
+                <TextBox x:Name="TextBoxEmployeetEmail" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5"  Width="154" Grid.Column="1" Text="{Binding email}"/>
+                <Button  x:Name="Button_Employee" Grid.Column="3" Grid.Row="5" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Top" Height="46" Width="114" Margin="0,1,0,0" Command="{Binding CreateNewEmployee}" CommandParameter="{Binding ElementName=CreateNewEmployeewnd}">Добавить</Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

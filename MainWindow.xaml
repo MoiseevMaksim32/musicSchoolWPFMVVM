@@ -1,0 +1,190 @@
+﻿<Window x:Class="musicSchoolWPFMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:musicSchoolWPFMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1100">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="13"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl SelectedItem="{Binding SelectedTabItem}">
+            <TabItem Name="StudentTab">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>student</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <Grid Height="550" Background="LightYellow">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Grid Height="300">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button Content="Создание" Grid.Row="0" Grid.Column="0" Background="AliceBlue" Style="{DynamicResource RoundButton}" Height="30" Width="100"   Command="{Binding OpenCreateStudentWnd}"/>
+                                    <Button Content="Обновление" Grid.Row="1" Grid.Column="0" Background="AliceBlue" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding OpenUpdateStudentWnd}"/>
+                                    <Button Content="Удаление" Grid.Row="2" Grid.Column="0" Background="AliceBlue" Style="{DynamicResource RoundButton}" Height="30" Width="100"  Command="{Binding  DeleteItem}"/>
+
+                                    <ComboBox x:Name="CBSpeciality" Background="AliceBlue" Grid.Row="3" Grid.Column="0"  Height="30" ItemsSource="{Binding AllSpeciality}" SelectedItem="{Binding SelectedSpeciality}"/>
+                                    <ComboBox x:Name="CBGroupMusic" Background="AliceBlue" Grid.Row="3" Grid.Column="1"  Height="30" ItemsSource="{Binding AllGroupMusic}" SelectedItem="{Binding SelectedGroupMusic}"/>
+                                    <Button Grid.Row="4" Grid.Column="0" Background="AliceBlue" Style="{DynamicResource RoundButton}" Height="30" Width="100"  Content="Фильтрация" Command="{Binding FiltratuinStudent}"/>
+                                    <Button Grid.Row="4" Grid.Column="1" Background="AliceBlue" Style="{DynamicResource RoundButton}" Height="30" Width="100" Content="Отобразить всё" Command="{Binding NoFiltratuin}"/>
+                                    <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <TextBlock Text="Поиск" Margin="0,10, 0, 0"/>
+                                        <TextBox  Height="20" Background="AliceBlue"  Text="{Binding Path=SearchStudent, UpdateSourceTrigger=PropertyChanged}" Margin="0,0, 0, 10"/>
+                                    </StackPanel>
+                                </Grid>
+                    </StackPanel>
+                            <DataGrid x:Name="DataStudent" IsReadOnly="False" Width="750" Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="3"  AutoGenerateColumns="False" ItemsSource="{Binding AllStudentDTO}" SelectedItem="{Binding SelectedStudentDTO}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="GroupMusic" Binding="{Binding GroupMusicStr}"/>
+                                    <DataGridTextColumn Header="Specility" Binding="{Binding SpecilityStr}"/>
+                                    <DataGridTextColumn Header="Fio " Binding="{Binding Fio}"/>
+                                    <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}"/>
+                                    <DataGridTextColumn Header="Gender" Binding="{Binding GenderStr}"/>
+                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>employee</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <Grid Height="550" Background="LightYellow">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Grid Height="300">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button Content="Создание" Background="AliceBlue"  Grid.Row="0" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding OpenCreateEmployeeWnd}"/>
+                                    <Button Content="Обновление" Background="AliceBlue"  Grid.Row="1" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding OpenUpdateEmployeeWnd}"/>
+                                    <Button Content="Удаление" Background="AliceBlue" Grid.Row="2" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding  DeleteItem}"/>
+
+                                    <ComboBox x:Name="CBPosition" Background="AliceBlue" Grid.Row="3" Grid.Column="0"  Height="30" ItemsSource="{Binding AllPosition}" SelectedItem="{Binding SelectedPosition}"/>
+                                    <Button Grid.Row="4" Background="AliceBlue" Grid.Column="0" Height="30" Style="{DynamicResource RoundButton}"  Content="Фильтрация" Width="100" Command="{Binding FiltratuinEmployee}"/>
+                                    <Button Grid.Row="4" Background="AliceBlue"  Grid.Column="1" Height="30" Style="{DynamicResource RoundButton}" Content="Отобразить всё" Width="100" Command="{Binding NoFiltratuin}"/>
+                                    <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <TextBlock Text="Поиск" Grid.Row="3" Margin="0,10, 0, 0"/>
+                                        <TextBox Grid.Row="4" Background="AliceBlue" Height="20" Grid.ColumnSpan="2" Text="{Binding Path=SearchEmployee, UpdateSourceTrigger=PropertyChanged}" Margin="0,0, 0, 10"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <DataGrid x:Name="DataEmployee" IsReadOnly="False" Grid.Column="1" Grid.ColumnSpan="3" Width="720" AutoGenerateColumns="False" ItemsSource="{Binding AllEmployeeDTO}" SelectedItem="{Binding SelectedEmployeeDTO}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Position" Binding="{Binding PositionStr}"/>
+                                    <DataGridTextColumn Header="Fio" Binding="{Binding Fio}"/>
+                                    <DataGridTextColumn Header="Telephone " Binding="{Binding Telephone}"/>
+                                    <DataGridTextColumn Header="Gender" Binding="{Binding GenderStr}"/>
+                                    <DataGridTextColumn Header="Experience" Binding="{Binding Experience}"/>
+                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>concert</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <Grid Height="550" Background="LightYellow">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Grid Height="300">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button Content="Создание" Background="AliceBlue" Grid.Row="0" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding OpenCreateConcertWnd}"/>
+                                    <Button Content="Обновление" Background="AliceBlue"  Grid.Row="1" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding OpenUpdateConcertWnd}"/>
+                                    <Button Content="Удаление" Background="AliceBlue" Grid.Row="2" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Command="{Binding  DeleteItem}"/>
+
+                                    <ComboBox x:Name="CBGroupMusicConcert" Background="AliceBlue" Grid.Row="3" Grid.Column="0"   Height="30" ItemsSource="{Binding AllGroupMusic}" SelectedItem="{Binding SelectedGroupMusic}"/>
+                                    <ComboBox x:Name="CBGenreConcert" Background="AliceBlue" Grid.Row="3" Grid.Column="1"   Height="30" ItemsSource="{Binding AllGenres}" SelectedItem="{Binding SelectedGenres}"/>
+                                    <Button Grid.Row="4" Background="AliceBlue" Grid.Column="0" Style="{DynamicResource RoundButton}" Height="30" Width="100" Content="Фильтрация" Command="{Binding FiltratuinConcert}"/>
+                                    <Button  Grid.Row="4" Background="AliceBlue" Grid.Column="1" Style="{DynamicResource RoundButton}" Height="30" Width="100" Content="Отображение всех значений" Command="{Binding NoFiltratuin}"/>
+                                    <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <TextBlock Text="Поиск" Margin="0,10, 0, 0"/>
+                                        <TextBox Height="20" Background="AliceBlue" Text="{Binding Path=SearchConcert, UpdateSourceTrigger=PropertyChanged}" Margin="0,0, 0, 10"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <DataGrid x:Name="DataConcert" IsReadOnly="False" Background="AliceBlue" Grid.Column="1" Grid.ColumnSpan="2" Width="350"  AutoGenerateColumns="False" ItemsSource="{Binding AllConcertDTO}" SelectedItem="{Binding SelectedConcertDTO}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="GroupMusic" Binding="{Binding GroupMusicStr}"/>
+                                    <DataGridTextColumn Header="Genres" Binding="{Binding GenresStr}"/>
+                                    <DataGridTextColumn Header="ConcertDate " Binding="{Binding ConcertDate}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
